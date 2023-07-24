@@ -1,20 +1,43 @@
-import css from './Footer.module.css';
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
+import { styled } from '@mui/system';
+
+const FooterContainer = styled('footer')({
+  backgroundColor: '#f5f5f5',
+  padding: '20px',
+  position: 'fixed',
+  bottom: 0,
+  left: 0,
+  width: '100%',
+});
+
+const FooterText = styled(Typography)({
+  fontSize: '14px',
+  textAlign: 'center',
+  margin: '0 auto',
+  padding: '0 20px',
+});
+
+const FooterLink = styled(Link)({
+  textDecoration: 'none',
+  color: '#1976d2',
+  fontWeight: 'bold',
+});
 
 const Footer = () => {
   return (
-    <footer className={css.footer}>
-      <p className={css.footer__text}>
+    <FooterContainer>
+      <FooterText>
         © 2023 Phonebook. All rights reserved. Created by{' '}
-        <a
+        <FooterLink
           rel="noreferrer"
           target="_blank"
-          className={css.footer__link}
-          href="https://www.linkedin.com/in/petroshutak/"
+          href="https://www.linkedin.com/in/sasha-zabolotnuy-901a1a256/"
         >
           Estarossa1
-        </a>
-      </p>
-    </footer>
+        </FooterLink>
+      </FooterText>
+    </FooterContainer>
   );
 };
 

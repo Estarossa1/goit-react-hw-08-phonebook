@@ -1,35 +1,73 @@
-import React from 'react';
-import ContactForm from './ContactForm/ContactForm';
-import ContactList from './ContactList/ContactList';
-import Filter from './Filter/Filter';
-import { Container, Title, Subtitle } from './App.styled';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchContacts } from 'redux/operations';
-import { getError, getIsLoading } from 'redux/selectors';
-import Loader from 'components/Loader/Loader';
-import Footer from './Footer/Footer';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useEffect, lazy } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Layout from './Layout/Layout';
+import Home from './Home/Home';
+import NotFound from './NotFound/NotFound';
+import { useDispatch } from 'react-redux';
+import { refreshUser } from 'redux/auth/operations';
+import { PrivateRoute } from './PrivateRoute';
+import { PublicRoute } from './PublicRoute';
+import { useAuth } from 'redux/auth/useAuth';
+import Loader from './Loader/Loader';
+import ErrorPage from './ErrorPage/ErrorPage';
+
+const RegisterPage = lazy(() =>
+  import('../pages/RegisterPage')       // ! "register-page" 
+);
+const ContactsPage = lazy(() =>
+  import('../pages/ContactsPage')       // ! "contacts-page" 
+);
+
+const LoginPage = lazy(() =>
+  import('../pages/Login')              // ! "login-page"
+);
 
 export const App = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
-
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
-  return (
-    <>
-    <Container>
-      {isLoading && !error && <Loader />}
-      <Title>PnoneBook</Title>
-      <ContactForm />
-      <Subtitle>Contacts</Subtitle>
-      <Filter />
-      <ContactList />
-    </Container>
-    <Footer />
-    </>
+  const { isRefreshing, error } = useAuth();
+
+  if (error) {
+    return <ErrorPage />;
+  }
+
+  return isRefreshing ? (
+    <Loader />
+  ) : (
+    <div>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route
+            path="/register"
+            element={
+              <PublicRoute
+                redirectTo="/contacts"
+                component={<RegisterPage />}
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute redirectTo="/contacts" component={<LoginPage />} />
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+            }
+          />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      <ToastContainer autoClose={2000} />
+    </div>
   );
 };

@@ -1,8 +1,19 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { deleteContact } from 'redux/contacts/operations';
 import { toast } from 'react-toastify';
-import { deleteContact } from 'redux/operations';
-import { ModalContainer, ModalContent, ButtonGroup, Button } from './DeleteConfirmation.styled';
+import Typography from '@mui/material/Typography';
+import { styled } from '@mui/system';
+import { ModalContainer, ModalContent, ButtonGroup as CustomButtonGroup } from './DeleteConfirmation.styled';
+import { Button as MuiButton } from '@mui/material';
+
+const ButtonGroup = styled(CustomButtonGroup)({
+  justifyContent: 'flex-end',
+});
+
+const Button = styled(MuiButton)({
+  marginLeft: '10px',
+});
 
 const DeleteConfirmation = ({ contact, onCancel }) => {
   const dispatch = useDispatch();
@@ -18,10 +29,14 @@ const DeleteConfirmation = ({ contact, onCancel }) => {
   return (
     <ModalContainer>
       <ModalContent>
-        <p>Are you sure you want to delete this contact?</p>
+        <Typography variant="body1">Are you sure you want to delete this contact?</Typography>
         <ButtonGroup>
-          <Button onClick={handleConfirmDelete}>Delete</Button>
-          <Button onClick={onCancel}>Cancel</Button>
+          <Button variant="contained" color="error" onClick={handleConfirmDelete}>
+            Delete
+          </Button>
+          <Button variant="contained" onClick={onCancel}>
+            Cancel
+          </Button>
         </ButtonGroup>
       </ModalContent>
     </ModalContainer>

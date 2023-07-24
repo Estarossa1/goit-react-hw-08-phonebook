@@ -32,7 +32,7 @@ const Footer = () => {
         <FooterLink
           rel="noreferrer"
           target="_blank"
-          href="https://www.linkedin.com/in/sasha-zabolotnuy-901a1a256/"
+          href="www.linkedin.com/in/sashazabolotnuy"
         >
           Estarossa1
         </FooterLink>

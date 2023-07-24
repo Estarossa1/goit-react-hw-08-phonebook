@@ -20,6 +20,7 @@ const UserName = styled(Typography)({
 const UserMenu = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
+
   const onLogout = () => {
     dispatch(logOut());
   };

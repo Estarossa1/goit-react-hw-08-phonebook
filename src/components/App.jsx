@@ -14,14 +14,14 @@ import Loader from './Loader/Loader';
 import ErrorPage from './ErrorPage/ErrorPage';
 
 const RegisterPage = lazy(() =>
-  import('../pages/RegisterPage')       // ! "register-page" 
+  import('../pages/RegisterPage')         // ! "register-page" 
 );
 const ContactsPage = lazy(() =>
-  import('../pages/ContactsPage')       // ! "contacts-page" 
+  import('../pages/ContactsPage')         // ! "contacts-page" 
 );
 
 const LoginPage = lazy(() =>
-  import('../pages/Login')              // ! "login-page"
+  import('../pages/Login')                // ! "login-page"
 );
 
 export const App = () => {

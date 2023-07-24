@@ -3,22 +3,22 @@ import { MutatingDots } from 'react-loader-spinner';
 const Loader = () => {
   return (
     <div style={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      margn: '0 auto',
-      marginTop: '5rem',
-  }}>
+        display: 'flex',
 
+        justifyContent: 'center',
+        alignItems: 'center',
+        margn: '0 auto',
+        marginTop: '5rem',
+    }}>
       <MutatingDots
-        height="80"
-        width="80"
+        height="100"
+        width="100"
+        color="#007fff"
+        secondaryColor="#007fff"
+        radius="12.5"
         ariaLabel="mutating-dots-loading"
         wrapperStyle={{}}
         wrapperClass=""
-        borderColor="#F4442E"
-        barColor="#f44336"
-        radius="12.5"
         visible={true}
         speed={1000}
       />

@@ -37,7 +37,7 @@ const ErrorPage = () => {
             sx={{ marginTop: 2, minWidth: '120px', padding: 1 }}
             onClick={handleGoHome}
           >
-            Try again
+           Try again
           </Button>
         )
       )}

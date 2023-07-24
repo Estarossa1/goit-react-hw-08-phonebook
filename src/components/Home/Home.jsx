@@ -12,6 +12,7 @@ const Home = () => {
     if (isLoggedIn) {
       navigate('/contacts');
     } else {
+      // alert('Please login or register');
       toast.info('Please login or register');
     }
   };
@@ -32,7 +33,7 @@ const Home = () => {
         backgroundPosition: 'center',
       }}
     >
-      <span style={{ color: '#ffffff', padding: '20px', textAlign: 'center'}}>Phone Book. Final App. Create for memory ...</span>
+       <span style={{ color: '#ffffff', padding: '20px', textAlign: 'center'}}>Phone Book. Final App. Create for memory ...</span>
       <Button variant="contained" onClick={handleButtonClick}>
         Get started
       </Button>

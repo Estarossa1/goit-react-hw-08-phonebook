@@ -15,6 +15,7 @@ export const ModalContainer = styled.div`
 export const ModalContent = styled.div`
   background-color: white;
   padding: 20px;
+  border-radius: 4px;
 `;
 
 export const ButtonGroup = styled.div`

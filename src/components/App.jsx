@@ -2,12 +2,9 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Layout from './Layout/Layout';
+import Model from './Model/Model';
 import Home from './Home/Home';
-// import RegisterPage from './Register/Register';
-// import ContactsPage from '../pages/ContactsPage';
 import NotFound from './NotFound/NotFound';
-// import LoginPage from '../pages/Login';
 import { useDispatch } from 'react-redux';
 import { refreshUser } from 'redux/auth/operations';
 import { PrivateRoute } from './PrivateRoute';
@@ -17,14 +14,14 @@ import Loader from './Loader/Loader';
 import ErrorPage from './ErrorPage/ErrorPage';
 
 const RegisterPage = lazy(() =>
-  import('../pages/RegisterPage' /* webpackChunkName: "register-page" */)
+  import('../pages/RegisterPage')         // ! register-page
 );
 const ContactsPage = lazy(() =>
-  import('../pages/ContactsPage' /* webpackChunkName: "contacts-page" */)
+  import('../pages/ContactsPage')         // ! contacts-page
 );
 
 const LoginPage = lazy(() =>
-  import('../pages/Login' /* webpackChunkName: "login-page" */)
+  import('../pages/Login')                // ! login-page
 );
 
 
@@ -36,9 +33,6 @@ export const App = () => {
 
   const { isRefreshing, error } = useAuth();
 
-  // console.log('isRefreshing', isRefreshing);
-  // console.log('error', error);
-
   if (error) {
     return <ErrorPage />;
   }
@@ -48,7 +42,7 @@ export const App = () => {
   ) : (
     <div>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Model />}>
           <Route index element={<Home />} />
 
           <Route

@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 import Loader from 'components/Loader/Loader';
 import { useAuth } from 'redux/auth/useAuth';
 
-const Layout = ({ children }) => {
+const Model = ({ children }) => {
   const { isLoggedIn } = useAuth();
 
   return (
@@ -20,4 +20,4 @@ const Layout = ({ children }) => {
   );
 };
 
-export default Layout;
+export default Model;
